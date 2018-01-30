@@ -1,27 +1,44 @@
 package domain.account;
 
+import org.hibernate.validator.constraints.NotBlank;
+import javax.persistence.*;
 import java.util.Date;
 
+
+@Entity
 public class Account {
-	
-	private int login;
+
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@NotBlank
+	private String login;
+
+	@NotBlank
 	private String password;
+
 	private String firstName;
 	private String lastName;
+
+	@Temporal(TemporalType.DATE)
 	private Date birthDate;
-	private String email;
 	private int rating;
-	private boolean confirmed;
-	
-			
+	private Boolean confirmed;
+
+
 	public Account() {
 		super();
 	}
-	
-	public int getLogin() {
+
+
+
+	public String getLogin() {
 		return login;
 	}
-	public void setLogin(int login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 	public String getPassword() {
@@ -48,12 +65,7 @@ public class Account {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+		
 	public int getRating() {
 		return rating;
 	}
@@ -66,6 +78,6 @@ public class Account {
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-		
+
 
 }

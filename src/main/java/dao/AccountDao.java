@@ -1,14 +1,12 @@
 package dao;
 
-import poe.jsf.domain.User;
+import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-public class AccountDao {
-	
-	public Long add(Account account) {
-       
-       
-       
-    }
-	
+import domain.account.Account;
 
+@Repository
+public interface AccountDao extends CrudRepository<Account, Long> {
+    public List<Account> findAllByFirstName(String firstName);
 }
