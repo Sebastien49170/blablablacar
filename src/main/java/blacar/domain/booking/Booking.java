@@ -1,8 +1,10 @@
-package domain.booking;
+package blacar.domain.booking;
 
 import java.util.Date;
 
-import domain.account.Account;
+import blacar.domain.account.Account;
+
+
 
 public class Booking {
 	

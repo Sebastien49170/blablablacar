@@ -1,17 +1,29 @@
-package domain.account;
+package blacar.domain.account;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
-import javax.persistence.*;
-import java.util.Date;
+
+import blacar.domain.ride.Ride;
+import blacar.domain.vehicle.Vehicle;
 
 
 @Entity
 public class Account {
 
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	private Long id;
 
 	@NotBlank
@@ -21,19 +33,50 @@ public class Account {
 	private String password;
 
 	private String firstName;
+	
 	private String lastName;
 
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
+	
 	private int rating;
-	private Boolean confirmed;
+	
+	private Boolean confirmed = false;
+
+	@OneToMany(mappedBy="accountVehicle")
+	private List<Vehicle> vehicle = new ArrayList<Vehicle>();
+	
+	@OneToMany(mappedBy="accountProposed")
+	private List<Ride> proposedRide = new ArrayList<Ride>();
 
 
 	public Account() {
 		super();
 	}
 
+	public List<Ride> getProposedRide() {
+		return proposedRide;
+	}
 
+	public void setProposedRide(List<Ride> proposedRide) {
+		this.proposedRide = proposedRide;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Vehicle> getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(List<Vehicle> vehicle) {
+		this.vehicle = vehicle;
+	}
 
 	public String getLogin() {
 		return login;
