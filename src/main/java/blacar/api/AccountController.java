@@ -47,6 +47,6 @@ public class AccountController {
        
     @PostMapping("/addride/{aid}/{rid}")
     public void addRideToUser(@PathVariable("aid") Long accountId, @PathVariable("rid") Long rideId) {
-        accountService.addVehicleToUser(accountId, rideId);
+        accountService.addRideToUser(accountId, rideId);
     }
 }

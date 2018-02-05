@@ -1,8 +1,5 @@
 package blacar.domain.ride;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +15,14 @@ public class Ride {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private Date startDate;
-	private List<String> locations;
-	private List<Date> arrivalDate;
+	private Long id;
+	private String startDate;
+	private String location;
+	private String arrivalDate;
 	private int totalPlaces;
 	private int leftPlaces;
-	private List<String> caracteristics;
+//	@ElementCollection(targetClass=String.class)
+//	private List<String> caracteristics;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -35,19 +33,19 @@ public class Ride {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
@@ -68,19 +66,19 @@ public class Ride {
 		this.accountProposed = accountProposed;
 	}
 
-	public List<String> getLocations() {
-		return locations;
+	public String getLocations() {
+		return location;
 	}
 
-	public void setLocations(List<String> locations) {
-		this.locations = locations;
+	public void setLocations(String location) {
+		this.location = location;
 	}
 
-	public List<Date> getArrivalDate() {
+	public String getArrivalDate() {
 		return arrivalDate;
 	}
 
-	public void setArrivalDate(List<Date> arrivalDate) {
+	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
 
@@ -92,13 +90,13 @@ public class Ride {
 		this.leftPlaces = leftPlaces;
 	}
 
-	public List<String> getCaracteristics() {
-		return caracteristics;
-	}
-
-	public void setCaracteristics(List<String> caracteristics) {
-		this.caracteristics = caracteristics;
-	}
+//	public List<String> getCaracteristics() {
+//		return caracteristics;
+//	}
+//
+//	public void setCaracteristics(List<String> caracteristics) {
+//		this.caracteristics = caracteristics;
+//	}
 	
 	
 	

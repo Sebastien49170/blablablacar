@@ -61,6 +61,8 @@ public class Account {
 	public void setProposedRide(List<Ride> proposedRide) {
 		this.proposedRide = proposedRide;
 	}
+	
+	
 
 	public Long getId() {
 		return id;
