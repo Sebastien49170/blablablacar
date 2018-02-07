@@ -1,8 +1,18 @@
+<!DOCTYPE html>
 
 
+<html xmlns:th="http://www.thymeleaf.org/">
 
-<html>
+<head th:include="head :: linksFragment">
+    <title>Création d'un compte utilisateur - Blacar</title>
+</head>
+
     <body>
+    
+    <div th:replace="layout :: navbarFragment"></div>
+    
+    <section class="section">
+    <div class="container">
         <form action="#" th:action="@{/}" th:object="${userCreationForm}" method="post">
             <table>
                 <tr>
@@ -19,7 +29,9 @@
                     <td><button type="submit">Sign Up</button></td>
                 </tr>
             </table>
-            <div th:text="${error}"></div>
+             <div th:text="${message}" class="message-info"></div>
         </form>
+            </div>
+</section>
     </body>
 </html>

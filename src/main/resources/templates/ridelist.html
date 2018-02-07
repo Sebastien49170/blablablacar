@@ -2,7 +2,16 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org/">
-<body>
+<head th:include="head :: linksFragment">
+    <title>Création d'un compte utilisateur - Blacar</title>
+</head>
+
+    <body>
+    
+    <div th:replace="layout :: navbarFragment"></div>
+    
+    <section class="section">
+    <div class="container">
 
         <table>
             <tr>
@@ -20,6 +29,7 @@
                 <td th:text="${ride.cost}"/>
             </tr>
         </table>
-
+		</div>
+	</section>
 </body>
 </html>

@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,14 +45,20 @@ public class BookingCreationController extends WebMvcConfigurerAdapter {
     }
 
     @GetMapping("/bookcreation")
-    public String showForm(BookCreationForm form) {
+    public String showForm(Ride ride, BookCreationForm form, Model model) {
+    	
+    	 Iterable<Ride> rides = rideRepository.findAll();
+         model.addAttribute("rides", rides);
+   
+         	
         return "bookcreation";
     }
 
     @PostMapping("/bookcreation")
-    public String checkBookingInfo(@Valid BookCreationForm bookForm, BindingResult bindingResult) {
+    public String checkBookingInfo(@Valid BookCreationForm bookForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+        	System.out.println("erreur");
             return "bookcreation";
         }
         else {
@@ -60,13 +67,23 @@ public class BookingCreationController extends WebMvcConfigurerAdapter {
         	Ride ride = new Ride();
         	Booking booking = new Booking();
         	
-        	ride = rideRepository.findByFromCity(bookForm.getLocation());
+        	ride = rideRepository.findOne(bookForm.getRideId());
         	account = accountRepository.findByLogin(bookForm.getLogin());
-
+        	
+        	if(ride.getSeats()<=0) {
+        		model.addAttribute("message", "Plus de places disponibles.");
+        	}
+        	else {
            	booking.setRide(ride);
+           	ride.setSeats((short) (ride.getSeats()-1));           	
            	booking.setAccount(account);
-        	    	     	
+        	   	     	
            	bookingRepository.save(booking);
+           	model.addAttribute("message", "Booking effectue");
+        	}
+        	
+           	Iterable<Ride> rides = rideRepository.findAll();
+            model.addAttribute("rides", rides);
         	
         	return "bookCreation";
         }

@@ -1,5 +1,22 @@
-<html>
-	<body>
-		<div th:text="${account.login}"></div>
-	</body>
+<!DOCTYPE html>
+
+
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head th:include="head :: linksFragment">
+<title>Home - Blacar</title>
+</head>
+<body>
+	<div th:replace="layout :: navbarFragment"></div>
+
+	<section class="section">
+		<div class="container">
+
+
+			<div th:text="${message}" class="message-info"></div>
+			<div th:text="'Bienvenue' + ${account.login}"></div>
+
+		</div>
+	</section>
+</body>
 </html>

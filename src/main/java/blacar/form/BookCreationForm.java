@@ -4,23 +4,34 @@ import javax.validation.constraints.NotNull;
 
 public class BookCreationForm {
 
-	@NotNull
-	private String location;
+	
+//	private String fromCity;
 	@NotNull
 	private String login;
 	
+	private Long rideId;
 	
-	public String getLocation() {
-		return location;
+	
+	public Long getRideId() {
+		return rideId;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setRideId(Long rideId) {
+		this.rideId = rideId;
 	}
+//	public String getFromCity() {
+//		return fromCity;
+//	}
+//	public void setFromCity(String fromCity) {
+//		this.fromCity = fromCity;
+//	}
 	public String getLogin() {
 		return login;
 	}
 	public void setLogin(String login) {
 		this.login = login;
 	}
+	
+	
+	
 	
 }

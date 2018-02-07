@@ -54,7 +54,7 @@ public class Account {
 	private List<Ride> proposedRide = new ArrayList<Ride>();
 	
 	@OneToMany(mappedBy="account")
-	private List<Booking>booking;
+	private List<Booking>booking = new ArrayList<Booking>();
 
 
 	public Account() {

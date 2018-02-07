@@ -22,7 +22,7 @@ public class RideService {
 	AccountRepository accountRepository;
 
 
-	public void add(Date startDate, String toCity, String fromCity, Double cost, short seats, Long accountId ) {
+	public void add(Date startDate, String fromCity, String toCity, Double cost, short seats, Long accountId ) {
 		Ride ride = new Ride();
 
 		ride.setStartDate(startDate);

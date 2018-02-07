@@ -52,15 +52,15 @@ public class RideCreationController extends WebMvcConfigurerAdapter {
             return "rideCreation";
         }
         else {
-        	//Date convertedDateMinutePrecision = DateUtils.convert(rideForm.getStartDate(), rideForm.getStartHours(), rideForm.getStartMinute());
-            
+        	            
         	Date convertedDateMinutePrecision = rideForm.getStartDate();
         	
         	
         	rideService.add(convertedDateMinutePrecision, rideForm.getFromCity(), rideForm.getToCity(), rideForm.getCost(), rideForm.getSeats(), rideForm.getAccountId());
             model.addAttribute("message", "Votre trajet a bien été pris en compte.");
   
-        	
+            Iterable<Account> accounts = accountRepository.findAll();
+            model.addAttribute("accounts", accounts);
         	return "rideCreation";
         }
     } 

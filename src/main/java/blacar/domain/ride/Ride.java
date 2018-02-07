@@ -1,5 +1,6 @@
 package blacar.domain.ride;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Ride {
 	
 		
 	@OneToMany(mappedBy = "ride")
-	private List<Booking>booking;
+	private List<Booking>booking = new ArrayList<Booking>();
 
 	@JsonIgnore
 	@ManyToOne

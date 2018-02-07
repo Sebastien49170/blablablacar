@@ -45,7 +45,7 @@ public class UserCreationController extends WebMvcConfigurerAdapter {
         }
         
         if(accountRepository.findByLogin(personForm.getLogin())!=null) {
-        	model.addAttribute("error","Cet utilisateur existe deja");
+        	model.addAttribute("message","Cet utilisateur existe deja");
         	return "signup";
         }
         else {
@@ -54,7 +54,7 @@ public class UserCreationController extends WebMvcConfigurerAdapter {
         	account.setPassword(personForm.getPassword());
         	
         	accountService.signup(account);
-        	
+        	model.addAttribute("Merci pour votre inscription");
         	redirectAttributes.addAttribute("accountId", account.getId());
             return "redirect:/home";
         }

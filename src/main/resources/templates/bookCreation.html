@@ -2,25 +2,42 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org/">
-    <body>
-        <form action="#" th:action="@{/bookcreation}" th:object="${bookCreationForm}" method="post">
-            <table>
-                <tr>
-                      <td>Login:</td>
-                    <td><input type="text" th:field="*{login}" /></td>
-                    <td th:if="${#fields.hasErrors('login')}" th:errors="login">Login Error</td>
-                </tr>
-                <tr>
-                   <td>Location:</td>
-                    <td><input type="text" th:field="*{location}" /></td>
-                    <td th:if="${#fields.hasErrors('location')}" th:errors="location">Location Error</td>
-                </tr>
-                
-                             
-                <tr>
-                    <td><button type="submit">Create Booking</button></td>
-                </tr>
-            </table>
-        </form>
-    </body>
+<head th:include="head :: linksFragment">
+    <title>Reservation d'un trajet - Blacar</title>
+</head>
+<body>
+ <div th:replace="layout :: navbarFragment"></div>
+    
+    <section class="section">
+    <div class="container">
+
+	<form action="#" th:action="@{/bookcreation}"
+		th:object="${bookCreationForm}" method="post">
+		<table>
+			<tr>
+				<td>Login:</td>
+				<td><input type="text" th:field="*{login}" /></td>
+				<td th:if="${#fields.hasErrors('login')}" th:errors="login">Login
+					Error</td>
+			</tr>
+
+			<tr>
+				<td>Ride:</td>
+
+				<td><select th:field="*{rideId}">
+						<option th:each="ride : ${rides}" th:value="${ride.id}"
+							th:text="${'Date: '+ ride.startDate + ' Depart: ' + ride.fromCity +' Arrivee: '+ ride.toCity + ' Places: ' + ride.seats + ' Prix: ' + ride.cost}">
+						</option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td><button type="submit">Create Booking</button></td>
+			</tr>
+		</table>
+		 <div th:text="${message}" class="message-info"></div>
+	</form>
+	            </div>
+</section>
+</body>
 </html>
