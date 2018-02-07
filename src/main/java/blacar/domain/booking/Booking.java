@@ -1,38 +1,53 @@
 package blacar.domain.booking;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import blacar.domain.account.Account;
+import blacar.domain.ride.Ride;
 
 
-
+@Entity
 public class Booking {
+	 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long bookId;
 	
-	private Account login;
-	private int rideId;
+	@JsonIgnore
+	@ManyToOne
+	private Account account;
+	
+	@JsonIgnore
+	@ManyToOne
+	private Ride ride;
+	
 	private int seatCount;
-	private Date dateCreation;
 	
-	
-	
+		
 	public Booking() {
 		super();
 	}
 
-	public Account getLogin() {
-		return login;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setLogin(Account login) {
-		this.login = login;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
-	public int getRideId() {
-		return rideId;
+	public Ride getRide() {
+		return ride;
 	}
 
-	public void setRideId(int rideId) {
-		this.rideId = rideId;
+	public void setRideId(Ride ride) {
+		this.ride = ride;
 	}
 
 	public int getSeatCount() {
@@ -43,13 +58,17 @@ public class Booking {
 		this.seatCount = seatCount;
 	}
 
-	public Date getDateCreation() {
-		return dateCreation;
+	public Long getBookId() {
+		return bookId;
 	}
 
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
+	}
+
+	public void setRide(Ride ride) {
+		this.ride = ride;
 	}
 	
-
+	
 }

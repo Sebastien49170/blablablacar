@@ -3,12 +3,12 @@ package blacar.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import blacar.dao.AccountDao;
-import blacar.dao.RideDao;
-import blacar.dao.VehicleDao;
 import blacar.domain.account.Account;
 import blacar.domain.ride.Ride;
 import blacar.domain.vehicle.Vehicle;
+import blacar.repository.AccountRepository;
+import blacar.repository.RideRepository;
+import blacar.repository.VehicleRepository;
 
 
 
@@ -16,32 +16,33 @@ import blacar.domain.vehicle.Vehicle;
 public class AccountService {
 
     @Autowired
-    AccountDao accountDao;
+    AccountRepository accountRepository;
     
     @Autowired
-    VehicleDao vehicleDao;
+    RideRepository rideRepository;
     
     @Autowired
-    RideDao rideDao;
+    VehicleRepository vehicleRepository;
     
+        
 
     public void signup(Account account) {
-        accountDao.save(account);
+    	accountRepository.save(account);
     }
     
     public void addVehicleToUser(Long accountId, Long vehiculeId) {
-    	Account account = accountDao.findOne(accountId);
-    	Vehicle vehicle = vehicleDao.findOne(vehiculeId);
+    	Account account = accountRepository.findOne(accountId);
+    	Vehicle vehicle = vehicleRepository.findOne(vehiculeId);
     	account.getVehicle().add(vehicle);
     	vehicle.setAccount(account);
-    	accountDao.save(account);
+    	accountRepository.save(account);
     }
     
-    public void addRideToUser(Long accountId, Long vehiculeId) {
-    	Account account = accountDao.findOne(accountId);
-    	Ride ride = rideDao.findOne(vehiculeId);
+    public void addRideToUser(Long accountId, Long rideId) {
+    	Account account = accountRepository.findOne(accountId);
+    	Ride ride = rideRepository.findOne(rideId);
     	account.getProposedRide().add(ride);
     	ride.setAccountProposed(account);
-    	accountDao.save(account);
+    	accountRepository.save(account);
     }
 }

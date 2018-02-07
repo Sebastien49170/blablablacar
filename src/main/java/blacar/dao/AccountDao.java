@@ -11,5 +11,5 @@ import java.util.List;
 
 @Repository
 public interface AccountDao extends CrudRepository<Account, Long> {
-    public List<Account> findAllByFirstName(String firstName);
+    public List<Account> findAllByLogin(String login);
 }

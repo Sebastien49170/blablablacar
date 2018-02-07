@@ -9,6 +9,6 @@ import blacar.domain.ride.Ride;
 
 @Repository
 public interface RideDao extends CrudRepository<Ride, Long> {
-	 public List<Ride> findAllByTotalPlaces(int place);
+	 public List<Ride> findAllByFromCity(String fromCity);
 
 }

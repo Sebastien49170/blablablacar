@@ -14,6 +14,9 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import blacar.domain.booking.Booking;
 import blacar.domain.ride.Ride;
 import blacar.domain.vehicle.Vehicle;
 
@@ -36,6 +39,7 @@ public class Account {
 	
 	private String lastName;
 
+	@JsonFormat(pattern="YYYY:MM:DD")
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	
@@ -48,6 +52,9 @@ public class Account {
 	
 	@OneToMany(mappedBy="accountProposed")
 	private List<Ride> proposedRide = new ArrayList<Ride>();
+	
+	@OneToMany(mappedBy="account")
+	private List<Booking>booking;
 
 
 	public Account() {
@@ -123,6 +130,16 @@ public class Account {
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+	
+	
 
 
 }

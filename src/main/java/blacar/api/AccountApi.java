@@ -8,31 +8,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import blacar.dao.AccountDao;
 import blacar.domain.account.Account;
+import blacar.repository.AccountRepository;
+import blacar.repository.RideRepository;
 import blacar.service.AccountService;
 
 
 
 @RestController
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping("/api/account")
+public class AccountApi {
 
 	@Autowired
 	AccountService accountService;
 	
 	@Autowired
-	AccountDao accountDoa;
+	AccountRepository accountRepository;
+	
+	@Autowired
+	RideRepository rideRepository;
 	
 	
 	@GetMapping("{id}")
     public Account find(@PathVariable("id") Long accountId) {
-        return accountDoa.findOne(accountId);
+        return accountRepository.findOne(accountId);
     }
 
     @GetMapping
     public Iterable<Account> findAll() {
-        return accountDoa.findAll();
+        return accountRepository.findAll();
     }
 
     @PostMapping

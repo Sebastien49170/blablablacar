@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org/">
+<body>
+
+        <table>
+            <tr>
+                <th>Date de depart</th>
+                <th>Depart</th>
+                <th>Arrivee</th>
+                <th>Nombre de places</th>
+                <th>Prix</th>
+            </tr>
+            <tr th:each="ride : ${rides}">
+                <td th:text="${ride.startDate}"/>
+                <td th:text="${ride.fromCity}"/>
+                <td th:text="${ride.toCity}"/>
+                <td th:text="${ride.seats}"/>
+                <td th:text="${ride.cost}"/>
+            </tr>
+        </table>
+
+</body>
+</html>

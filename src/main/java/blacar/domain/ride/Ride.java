@@ -1,14 +1,22 @@
 package blacar.domain.ride;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import blacar.domain.account.Account;
+import blacar.domain.booking.Booking;
 
 @Entity
 public class Ride {
@@ -16,14 +24,23 @@ public class Ride {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String startDate;
-	private String location;
-	private String arrivalDate;
-	private int totalPlaces;
-	private int leftPlaces;
-//	@ElementCollection(targetClass=String.class)
-//	private List<String> caracteristics;
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date startDate;
+	
+
+	private String fromCity;
+	private String toCity;
+
+	private Double cost;
+
+	private short seats;
+	
+		
+	@OneToMany(mappedBy = "ride")
+	private List<Booking>booking;
+
 	@JsonIgnore
 	@ManyToOne
 	private Account accountProposed;
@@ -33,74 +50,88 @@ public class Ride {
 		super();
 	}
 
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getStartDate() {
+
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public int getTotalPlaces() {
-		return totalPlaces;
+
+	public String getFromCity() {
+		return fromCity;
 	}
 
-	public void setTotalPlaces(int totalPlaces) {
-		this.totalPlaces = totalPlaces;
+
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
 	}
 
-	@JsonIgnore
+
+	public String getToCity() {
+		return toCity;
+	}
+
+
+	public void setToCity(String toCity) {
+		this.toCity = toCity;
+	}
+
+
+	public Double getCost() {
+		return cost;
+	}
+
+
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
+
+	public short getSeats() {
+		return seats;
+	}
+
+
+	public void setSeats(short seats) {
+		this.seats = seats;
+	}
+
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+
+
 	public Account getAccountProposed() {
 		return accountProposed;
 	}
 
+
 	public void setAccountProposed(Account accountProposed) {
 		this.accountProposed = accountProposed;
 	}
-
-	public String getLocations() {
-		return location;
-	}
-
-	public void setLocations(String location) {
-		this.location = location;
-	}
-
-	public String getArrivalDate() {
-		return arrivalDate;
-	}
-
-	public void setArrivalDate(String arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
-
-	public int getLeftPlaces() {
-		return leftPlaces;
-	}
-
-	public void setLeftPlaces(int leftPlaces) {
-		this.leftPlaces = leftPlaces;
-	}
-
-//	public List<String> getCaracteristics() {
-//		return caracteristics;
-//	}
-//
-//	public void setCaracteristics(List<String> caracteristics) {
-//		this.caracteristics = caracteristics;
-//	}
 	
 	
-	
-	
-	
-
 }
+	
+
+	

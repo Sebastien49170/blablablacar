@@ -8,34 +8,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import blacar.dao.RideDao;
 import blacar.domain.ride.Ride;
-import blacar.service.RideService;
+import blacar.repository.RideRepository;
 
 
 
 @RestController
-@RequestMapping("/ride")
-public class RideController {
+@RequestMapping("/api/ride")
+public class RideApi {
 
-	@Autowired
-	RideDao rideDao;
-	
-	@Autowired
-	RideService rideService;
+	 @Autowired
+	 private RideRepository rideRepository;
 	
 	@GetMapping("show/{idRide}")
     public Ride find(@PathVariable("idRide") Long idRide) {
-        return rideDao.findOne(idRide);
+        return rideRepository.findOne(idRide);
     }
 
     @GetMapping
     public Iterable<Ride> findAll() {
-        return rideDao.findAll();
+        return rideRepository.findAll();
     }
 
     @PostMapping
     public void add(@RequestBody Ride ride) {
-       rideService.add(ride);
+    	rideRepository.save(ride);
     }
 }

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org/">
+<body>
+
+	<form action="#" th:action="@{/ride}" th:object="${rideCreationForm}"
+		method="post">
+		<table>
+			<!-- <tr>
+				<td>User:</td>
+				<td><input type="number" th:field="*{accountId}" /></td>
+				<td th:if="${#fields.hasErrors('accountId')}" th:errors="accountId">AccountId
+					Error</td>
+			</tr> -->
+			 <tr>
+			 <td>User:</td>
+                    <td>
+                        <select th:field="*{accountId}">
+                            <option
+                                    th:each="account : ${accounts}"
+                                    th:value="${account.id}"
+                                    th:text="${account.login}"
+                            ></option>
+                        </select>
+                    </td>
+                    <td th:if="${#fields.hasErrors('accountId')}" th:errors="*{accountId}"/>
+			</tr>
+			<tr>
+				<td> Date de depart</td>
+				<td><input type="datetime-local" th:field="*{startDate}" /></td>
+				<td th:if="${#fields.hasErrors('startDate')}"
+					th:errors="*{startDate}" />
+			</tr>
+			<tr>
+				<td>Ville de depart:</td>
+				<td><input type="text" th:field="*{fromCity}" /></td>
+				<td th:if="${#fields.hasErrors('fromCity')}"
+					th:errors="*{fromCity}">City Error</td>
+			</tr>
+			
+			<tr>
+				<td>Ville d'arrivee:</td>
+				<td><input type="text" th:field="*{toCity}" /></td>
+				<td th:if="${#fields.hasErrors('toCity')}"
+					th:errors="*{toCity}">City Error</td>
+			</tr>
+			
+			<tr>
+				<td>Prix:</td>
+				<td><input type="number" th:field="*{cost}" /></td>
+				<td th:if="${#fields.hasErrors('cost')}"
+					th:errors="*{cost}">Places Error</td>
+			</tr>
+			
+			<tr>
+				<td>Places disponibles:</td>
+				<td><input type="number" th:field="*{seats}" /></td>
+				<td th:if="${#fields.hasErrors('seats')}"
+					th:errors="*{seats}">Places Error</td>
+			</tr>
+			
+			
+
+			<tr>
+				<td><button type="submit">Create Ride</button></td>
+			</tr>
+		</table>
+		
+	</form>
+	
+</body>
+</html>
