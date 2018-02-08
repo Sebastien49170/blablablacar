@@ -32,12 +32,12 @@ public class UserCreationController extends WebMvcConfigurerAdapter {
         registry.addViewController("/results").setViewName("results");
     }
 
-    @GetMapping("/")
+    @GetMapping("/signup")
     public String showForm(UserCreationForm form) {
         return "signup";
     }
 
-    @PostMapping("/")
+    @PostMapping("/signup")
     public String checkPersonInfo(@Valid UserCreationForm personForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
         if (bindingResult.hasErrors()) {

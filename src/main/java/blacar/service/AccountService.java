@@ -1,6 +1,10 @@
 package blacar.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import blacar.domain.account.Account;
@@ -24,10 +28,19 @@ public class AccountService {
     @Autowired
     VehicleRepository vehicleRepository;
     
+    @Autowired
+    private InMemoryUserDetailsManager inMemoryUserDetailsManager;
+    
         
 
     public void signup(Account account) {
     	accountRepository.save(account);
+    	try {
+    		System.out.println("Boucle signup");
+            inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(account.getLogin(), account.getPassword(), new ArrayList<GrantedAuthority>()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public void addVehicleToUser(Long accountId, Long vehiculeId) {

@@ -6,7 +6,7 @@
 	<nav class="navbar is-info" role="navigation"
 		aria-label="main navigation" th:fragment="navbarFragment">
 		<div class="navbar-brand">
-			<a class="navbar-item" th:href="@{/}"> Blacar </a>
+			<a class="navbar-item" th:href="@{/blacar}"> Blacar </a>
 		</div>
 		
 		<div class="navbar-menu" id="navMenu">
@@ -17,7 +17,11 @@
 			</div>
 
 			<div class="navbar-end">
+				<!-- <a class="navbar-item" th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></a> -->
+				<a class="navbar-item" th:href="@{/signin}"> Connexion </a>
 				<a class="navbar-item" th:href="@{/signup}"> Inscription </a>
+				<a class="navbar-item" th:href="@{/signout}"> Deconnexion </a>
+				
 			</div>
 	
 		</div>

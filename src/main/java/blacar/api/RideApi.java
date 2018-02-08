@@ -29,6 +29,11 @@ public class RideApi {
     public Iterable<Ride> findAll() {
         return rideRepository.findAll();
     }
+    
+    @GetMapping("search/{searchRide}")
+    public Iterable<Ride> find(@PathVariable("searchRide") String searchRide){
+    	return	rideRepository.findAllByToCityLikeIgnoreCaseOrFromCityLikeIgnoreCase("%" + searchRide + "%", "%" + searchRide + "%"); 
+    	}
 
     @PostMapping
     public void add(@RequestBody Ride ride) {
