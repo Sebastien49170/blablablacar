@@ -1,0 +1,8 @@
+
+
+<div th:fragment="fragmentRide">
+	<option th:each="ride : ${rides}" th:value="${ride.id}"
+		th:text="${'Date: '+ ride.startDate + ' Depart: ' + ride.fromCity +' Arrivee: '+ ride.toCity + ' Places: ' + ride.seats + ' Prix: ' + ride.cost}">
+	</option>
+
+</div>

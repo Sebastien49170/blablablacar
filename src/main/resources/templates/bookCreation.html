@@ -2,9 +2,27 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:include="head :: linksFragment">
+<!-- <head th:include="head :: linksFragment">
 <title>Reservation d'un trajet - Blacar</title>
+</head> -->
+
+<head>
+<meta charset="UTF-8" />
+<title>Blacar</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+	
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/js/websocket.js"></script>
+
 </head>
+
+
+
+
+
 <body>
 	<div th:replace="layout :: navbarFragment"></div>
 
@@ -29,18 +47,13 @@
 			<form action="#" th:action="@{/bookcreation}"
 				th:object="${bookCreationForm}" method="post">
 				<table>
-					<!-- <tr>
-						<td>Login:</td>
-						<td><input type="text" th:field="*{login}" /></td>
-						<td th:if="${#fields.hasErrors('login')}" th:errors="login">Login
-							Error</td>
-					</tr> -->
 					<tr>
 						<td>Ride:</td>
 						<td><select th:field="*{rideId}">
-								<option th:each="ride : ${rides}" th:value="${ride.id}"
+							<div th:replace ="rideSelect :: fragmentRide"></div>
+								<!-- <option th:each="ride : ${rides}" th:value="${ride.id}"
 									th:text="${'Date: '+ ride.startDate + ' Depart: ' + ride.fromCity +' Arrivee: '+ ride.toCity + ' Places: ' + ride.seats + ' Prix: ' + ride.cost}">
-								</option>
+								</option> -->
 						</select></td>
 						<td><button type="submit">Create Booking</button></td>
 					</tr>

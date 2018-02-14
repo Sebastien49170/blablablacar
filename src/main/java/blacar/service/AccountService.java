@@ -36,7 +36,7 @@ public class AccountService {
     public void signup(Account account) {
     	accountRepository.save(account);
     	try {
-    		System.out.println("Boucle signup");
+    
             inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(account.getLogin(), account.getPassword(), new ArrayList<GrantedAuthority>()));
         } catch (Exception e) {
             e.printStackTrace();

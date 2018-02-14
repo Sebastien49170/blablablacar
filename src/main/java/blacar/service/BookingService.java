@@ -2,6 +2,7 @@ package blacar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import blacar.domain.account.Account;
 import blacar.domain.booking.Booking;
@@ -11,7 +12,7 @@ import blacar.repository.BookingRepository;
 import blacar.repository.RideRepository;
 
 
-
+@Transactional
 @Service
 public class BookingService {
 

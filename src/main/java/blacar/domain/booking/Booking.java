@@ -46,9 +46,6 @@ public class Booking {
 		return ride;
 	}
 
-	public void setRideId(Ride ride) {
-		this.ride = ride;
-	}
 
 	public int getSeatCount() {
 		return seatCount;

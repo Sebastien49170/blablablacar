@@ -1,4 +1,4 @@
-package blacar.Controlleur;
+package blacar.controlleur;
 
 import javax.validation.Valid;
 

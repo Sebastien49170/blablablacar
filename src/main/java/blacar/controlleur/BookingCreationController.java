@@ -1,4 +1,4 @@
-package blacar.Controlleur;
+package blacar.controlleur;
 
 import javax.validation.Valid;
 
@@ -66,18 +66,15 @@ public class BookingCreationController extends WebMvcConfigurerAdapter {
     public String checkBookingInfo(@Valid BookCreationForm bookForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-        	System.out.println("erreur form book");
-            return "bookcreation";
+           return "bookcreation";
         }
         else {
         	String log;
-        	Account account = new Account();
-        	Ride ride = new Ride();
+        	Account account;
+        	Ride ride;
         	Booking booking = new Booking();
         	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             log = auth.getName();
-
-            System.out.println(log);
         	
         	ride = rideRepository.findOne(bookForm.getRideId());
         	account = accountRepository.findByLogin(log);

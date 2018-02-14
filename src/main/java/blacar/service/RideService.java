@@ -3,6 +3,7 @@ package blacar.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import blacar.domain.account.Account;
@@ -20,9 +21,12 @@ public class RideService {
 
 	@Autowired
 	AccountRepository accountRepository;
+	
+	@Autowired
+    private SimpMessagingTemplate template;
 
 
-	public void add(Date startDate, String fromCity, String toCity, Double cost, short seats, Long accountId ) {
+	public Ride add(Date startDate, String fromCity, String toCity, Double cost, short seats, Long accountId ) {
 		Ride ride = new Ride();
 
 		ride.setStartDate(startDate);
@@ -34,6 +38,10 @@ public class RideService {
 		ride.setAccountProposed(account);		
 
 		rideRepository.save(ride);
+		
+
+        template.convertAndSend("/topic/rideNotification", ride);
+        return ride;
 	}
 
 }

@@ -1,10 +1,12 @@
-package blacar.Controlleur;
+package blacar.controlleur;
 
 import java.util.Date;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,6 +73,14 @@ public class RideCreationController extends WebMvcConfigurerAdapter {
             model.addAttribute("rides", rides);
             return "ridelist";
         }
+        
+        @MessageMapping("/rideNotification")
+        @SendTo("/topic/rideNotification")
+        public Ride rideNotification(Ride ride){
+        	
+            return ride;
+        }
+        
     }
 
 

@@ -1,4 +1,4 @@
-package blacar.Controlleur;
+package blacar.controlleur;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

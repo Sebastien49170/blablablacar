@@ -17,10 +17,9 @@
 			</div>
 
 			<div class="navbar-end">
-				<!-- <a class="navbar-item" th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></a> -->
-				<a class="navbar-item" th:href="@{/signin}"> Connexion </a>
-				<a class="navbar-item" th:href="@{/signup}"> Inscription </a>
-				<a class="navbar-item" th:href="@{/signout}"> Deconnexion </a>
+				<a class="navbar-item" th:href="@{/signin}" th:if="${#httpServletRequest.remoteUser == null}"> Connexion </a>
+				<a class="navbar-item" th:href="@{/signup}" th:if="${#httpServletRequest.remoteUser == null}"> Inscription </a>
+				<a class="navbar-item" th:href="@{/signout}" th:if="${#httpServletRequest.remoteUser != null}"><span th:text="${#authentication.getPrincipal().getUsername()}"></span> - Deconnexion </a>
 				
 			</div>
 	
